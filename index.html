@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa: Padrões de Consumo de Filmes</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1e1e24;
+            --accent-color: #ffb800;
+            --text-color: #ffffff;
+            --text-muted: #adb5bd;
+            --border-color: #323238;
+            --input-bg: #2a2a30;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #1e1e24 0%, #2d2d35 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label.question-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-text:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--input-bg);
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .option-item:hover {
+            border-color: #444;
+            background-color: #32323a;
+        }
+
+        .option-item input[type="radio"], 
+        .option-item input[type="checkbox"] {
+            margin-right: 12px;
+            accent-color: var(--accent-color);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item span {
+            font-size: 0.95rem;
+        }
+
+        .text-inline-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--text-muted);
+            color: var(--text-color);
+            margin-left: 8px;
+            padding: 2px 5px;
+            font-size: 0.95rem;
+            width: 200px;
+        }
+
+        .text-inline-input:focus {
+            outline: none;
+            border-bottom-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 184, 0, 0.2);
+        }
+
+        .btn-submit:hover {
+            background-color: #e0a200;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form action="/processar" method="POST">
+        
+        <header>
+            <h1>🎬 Pesquisa Estatística: Consumo de Filmes</h1>
+            <p>Seus dados serão mantidos em sigilo absoluto e consolidados apenas para análises de padrões populacionais.</p>
+        </header>
+
+        <!-- Bloco 1 -->
+        <div class="section-card">
+            <div class="section-title">📍 Bloco 1: Perfil Demográfico</div>
+            
+            <div class="form-group">
+                <label for="nome" class="question-label">Nome completo:</label>
+                <input type="text" id="nome" name="nome" class="input-text" required placeholder="Digite seu nome">
+            </div>
+
+            <div class="form-group">
+                <label for="endereco" class="question-label">Endereço residencial:</label>
+                <input type="text" id="endereco" name="endereco" class="input-text" required placeholder="Rua, número, Bairro, Cidade - UF">
+            </div>
+
+            <div class="form-group">
+                <label class="question-label">Idade:</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="radio" name="idade" value="Menos de 18 anos" required><span>Menos de 18 anos</span></label>
+                    <label class="option-item"><input type="radio" name="idade" value="18 a 24 anos"><span>18 a 24 anos</span></label>
+                    <label class="option-item"><input type="radio" name="idade" value="25 a 34 anos"><span>25 a 34 anos</span></label>
+                    <label class="option-item"><input type="radio" name="idade" value="35 a 49 anos"><span>35 a 49 anos</span></label>
+                    <label class="option-item"><input type="radio" name="idade" value="50 anos ou mais"><span>50 anos ou mais</span></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="question-label">Nacionalidade:</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="radio" name="nacionalidade" value="Brasileira" required><span>Brasileira</span></label>
+                    <label class="option-item"><input type="radio" name="nacionalidade" value="Portuguesa"><span>Portuguesa</span></label>
+                    <label class="option-item">
+                        <input type="radio" name="nacionalidade" value="outro">
+                        <span>Outra: <input type="text" name="nacionalidade_outro" class="text-inline-input" placeholder="Especifique"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="question-label">Sexo / Gênero:</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="radio" name="sexo" value="Feminino" required><span>Feminino</span></label>
+                    <label class="option-item"><input type="radio" name="sexo" value="Masculino"><span>Masculino</span></label>
+                    <label class="option-item"><input type="radio" name="sexo" value="Não-binário"><span>Não-binário</span></label>
+                    <label class="option-item"><input type="radio" name="sexo" value="Prefiro não responder"><span>Prefiro não responder</span></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="question-label">Formação Acadêmica:</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="radio" name="formacao" value="Ensino Fundamental" required><span>Ensino Fundamental</span></label>
+                    <label class="option-item"><input type="radio" name="formacao" value="Ensino Médio"><span>Ensino Médio</span></label>
+                    <label class="option-item"><input type="radio" name="formacao" value="Ensino Superior"><span>Ensino Superior</span></label>
+                    <label class="option-item"><input type="radio" name="formacao" value="Pós-graduação / Mestrado / Doutorado"><span>Pós-graduação / Mestrado / Doutorado</span></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 2 -->
+        <div class="section-card">
+            <div class="section-title">📺 Bloco 2: Padrões de Consumo</div>
+
+            <div class="form-group">
+                <label class="question-label">Plataformas de streaming em que assiste a filmes (Marque todas as válidas):</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="streaming" value="Netflix"><span>Netflix</span></label>
+                    <label class="option-item"><input type="checkbox" name="streaming" value="Prime Video"><span>Prime Video</span></label>
+                    <label class="option-item"><input type="checkbox" name="streaming" value="Max"><span>Max</span></label>
+                    <label class="option-item"><input type="checkbox" name="streaming" value="Disney+"><span>Disney+</span></label>
+                    <label class="option-item"><input type="checkbox" name="streaming" value="Globoplay"><span>Globoplay</span></label>
+                    <label class="option-item"><input type="checkbox" name="streaming" value="YouTube"><span>YouTube</span></label>
